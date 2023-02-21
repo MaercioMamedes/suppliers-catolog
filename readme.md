@@ -8,19 +8,19 @@ entrar em contato com o fornecedor agendar a data da execução do serviço
 
 ### Etapas do projeto
 
-:heavy_check_mark: Criar modelos e definir relacionamentos
-:x: template base do projeto
-:x: view e rota de cadastro de usuário
-:x: view e rota de autenticação de usuário
-:x: rota para logout
-:x: view e rota de autalização de usuário
-:x: view e rota de exclusão de usuário
-:x: view e rota de cadastro de serviço
-:x: view e rota de atualização de serviço
-:x: view e rota da agenda do fornecedor
-:x: view e rota para comentários e nota do serviço
-:x: view e rota para dashboard de usuário fornecedor
-:x: view e rota para dashboard de usuário cliente
-:x: view e rota para dashboard de usuário administrador
-:x: validação de formulários
-:x: requisições assícronas com javascript
+* :heavy_check_mark: Criar modelos e definir relacionamentos
+* :x: template base do projeto
+* :x: view e rota de cadastro de usuário
+* :x: view e rota de autenticação de usuário
+* :x: rota para logout
+* :x: view e rota de autalização de usuário
+* :x: view e rota de exclusão de usuário
+* :x: view e rota de cadastro de serviço
+* :x: view e rota de atualização de serviço
+* :x: view e rota da agenda do fornecedor
+* :x: view e rota para comentários e nota do serviço
+* :x: view e rota para dashboard de usuário fornecedor
+* :x: view e rota para dashboard de usuário cliente
+* :x: view e rota para dashboard de usuário administrador
+* :x: validação de formulários
+* :x: requisições assícronas com javascript
