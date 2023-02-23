@@ -11,7 +11,8 @@ entrar em contato com o fornecedor agendar a data da execução do serviço
 * :heavy_check_mark: Criar modelos e definir relacionamentos
 * :x: template base do projeto
 * :x: view e rota para index
-* :x: view e rota de cadastro de usuário
+* :x: view e rota de cadastro de cliente
+* :x: view e rota de cadastro de fornecedor
 * :heavy_check_mark: view e rota de autenticação de usuário
 * :heavy_check_mark: rota para logout
 * :x: view e rota de autalização de usuário

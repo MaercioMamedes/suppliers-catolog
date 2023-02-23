@@ -1,3 +1,4 @@
+from .BaseUser import *
 from .Client import *
 from .Supplier import *
 from .Category import *

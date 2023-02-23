@@ -3,14 +3,14 @@ from core.models import Client, Supplier, Service, Message
 
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ('user', 'cpf', 'likes')
+    list_display = ('user', 'cpf', 'likes', 'city','uf','phone')
 
 
 admin.site.register(Client, ClientAdmin)
 
 
 class SupplierAdmin(admin.ModelAdmin):
-    list_display = ('user', 'cnpj', 'likes')
+    list_display = ('user','fantasy_name', 'cnpj', 'likes', 'city','uf','phone')
 
 
 admin.site.register(Supplier, SupplierAdmin)
