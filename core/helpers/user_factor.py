@@ -11,9 +11,11 @@ def client_factor(**kwargs):
     )
 
     user_client.set_password(kwargs['password'])
+    user_client.save()
 
     Client.objects.create(
         user=user_client,
+        fullname=kwargs['fullname'],
         phone=kwargs['phone'],
         cpf=kwargs['cpf'],
         district=kwargs['district'],
@@ -33,6 +35,7 @@ def supplier_factor(**kwargs):
     )
 
     user_supplier.set_password(kwargs['password'])
+    user_supplier.save()
 
     Supplier.objects.create(
         user=user_supplier,

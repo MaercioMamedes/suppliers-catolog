@@ -3,3 +3,6 @@ from .LoginView import *
 from .logout import *
 from .ClientRegisterView import *
 from .SupplierRegisterView import *
+from .ClientUpdateView import *
+from .UserUpdateRedirectView import *
+from .SupplierUpdateView import *
