@@ -15,10 +15,8 @@ entrar em contato com o fornecedor agendar a data da execução do serviço
 * :heavy_check_mark: view e rota de cadastro de fornecedor
 * :heavy_check_mark: view e rota de autenticação de usuário
 * :heavy_check_mark: rota para logout
-* :x: view e rota de autalização de usuário
+* :heavy_check_mark: view e rota de autalização de usuário
 * :x: view e rota de exclusão de usuário
-* :x: view e rota de cadastro de categorias de serviços
-* :x: view e rota de atualização de categorias de serviços
 * :x: view e rota de cadastro de serviço
 * :x: view e rota de atualização de serviço
 * :x: view e rota da agenda do fornecedor
