@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Client, Supplier, Service, Message
+from core.models import Client, Supplier, Service, Message, Category
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -28,5 +28,12 @@ class MesageAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Message, MesageAdmin)
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+admin.site.register(Category, CategoryAdmin)
 
 

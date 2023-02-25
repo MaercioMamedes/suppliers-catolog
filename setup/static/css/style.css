@@ -1,0 +1,8 @@
+.grid-my-services{
+    display: flex;
+    justify-content: space-between;
+}
+img.my-services{
+    height: 300px;
+    width: 400px;
+}
