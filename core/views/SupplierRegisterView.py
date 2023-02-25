@@ -1,16 +1,18 @@
 from django.views.generic import FormView
 from core.forms import SupplierRegisterForm
 from django.shortcuts import redirect
-from core.helpers import supplier_factor
+from core.helpers import supplier_factor, get_type_user
 
 
 class SupplierRegisterView(FormView):
-    template_name = 'supplierRegister.html'
+    template_name = 'SupplierRegister.html'
     form_class = SupplierRegisterForm
 
     def get_context_data(self, **kwargs):
+        logged_user = get_type_user(self.request.user)
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'Cadastro de Fornecedor'
+        context['type_user'] = logged_user[0]
         return context
 
     def post(self, request, *args, **kwargs):

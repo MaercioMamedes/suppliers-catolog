@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from core.models import Supplier
+from core.helpers import get_type_user
 
 
 class SupplierUpdateView(FormView):
@@ -11,8 +12,10 @@ class SupplierUpdateView(FormView):
     form_class = SupplierUpdateForm
 
     def get_context_data(self, **kwargs):
+        logged_user = get_type_user(self.request.user)
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'Atualização de Fornecedor'
+        context['type_user'] = logged_user[0]
         return context
 
     def get_initial(self):

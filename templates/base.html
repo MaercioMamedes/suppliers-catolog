@@ -43,6 +43,12 @@
             <a class="dropdown-item" href="#">meus pedidos</a>
             <a class="dropdown-item" href="#">agenda</a>
           </div>
+
+          {% elif user.is_superuser %}
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'admin:index' %}">admin</a>
+          </div>
+
           {% endif %}
         </li>
 

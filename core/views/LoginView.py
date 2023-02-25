@@ -1,7 +1,7 @@
 from django.views.generic import FormView
 from core.forms import LoginForm
-from django.shortcuts import redirect, get_object_or_404
-from django.contrib.auth.models import User
+from core.helpers import get_type_user
+from django.shortcuts import redirect
 from django.contrib import auth
 
 
@@ -10,8 +10,10 @@ class LoginView(FormView):
     form_class = LoginForm
 
     def get_context_data(self, **kwargs):
+        logged_user = get_type_user(self.request.user)
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'login'
+        context['type_user'] = logged_user[0]
         return context
 
     def post(self, request, *args, **kwargs):

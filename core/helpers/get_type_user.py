@@ -15,7 +15,7 @@ def get_type_user(request_user):
             return 'supplier', user_supplier
 
         else:
-            raise Exception
+            return 'superuser', request_user
 
     except TypeError:
         return 'anonymous_user'
