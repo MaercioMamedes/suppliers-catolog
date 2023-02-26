@@ -9,13 +9,13 @@ def get_type_user(request_user):
         user_supplier = Supplier.objects.filter(user=request_user).first()
 
         if user_client is not None:
-            return 'client', user_client
+            return 'client'
 
         elif user_supplier is not None:
-            return 'supplier', user_supplier
+            return 'supplier'
 
-        else:
-            return 'superuser', request_user
+        elif request_user.is_superuser:
+            return 'superuser'
 
     except TypeError:
         return 'anonymous_user'

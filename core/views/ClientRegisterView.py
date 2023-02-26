@@ -9,14 +9,18 @@ class ClientRegisterView(FormView):
     form_class = ClientRegisterForm
 
     def get_context_data(self, **kwargs):
-        logged_user = get_type_user(self.request.user)
+        """Método para renderizar página a partir de uma requisição GET"""
+        logged_user = get_type_user(self.request.user)  # retorna qual tipo de usuário está logado
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'Cadastro de Cliente'
-        context['type_user'] = logged_user[0]
+        context['type_user'] = logged_user
         return context
 
     def post(self, request, *args, **kwargs):
+        """Método post para cadastrar no usuário a partir de uma requisição POST"""
         form = ClientRegisterForm(request.POST)
+
+        # método para criar um usuário cliente
         client_factor(
             fullname=form.data.get('fullname'),
             username=form.data.get('username'),

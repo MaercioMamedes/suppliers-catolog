@@ -12,6 +12,7 @@ class SupplierUpdateView(FormView):
     form_class = SupplierUpdateForm
 
     def get_context_data(self, **kwargs):
+        """Método para renderizar página a partir de uma requisição GET"""
         logged_user = get_type_user(self.request.user)
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'Atualização de Fornecedor'
@@ -19,6 +20,7 @@ class SupplierUpdateView(FormView):
         return context
 
     def get_initial(self):
+        """Método para carregar o formulário de atualização com os dados do usuário fornecedor logado"""
         user = get_object_or_404(User, pk=self.request.user.id)
         user_supllier = get_object_or_404(Supplier, user=user)
 
@@ -36,6 +38,7 @@ class SupplierUpdateView(FormView):
         }
 
     def post(self, request, *args, **kwargs):
+        """Método para gravar dados do usuário fornecedor atualizado a partir de uma requisição POST"""
         form = SupplierUpdateForm(request.POST)
         user = get_object_or_404(User, pk=kwargs['pk'])
         user_supplier = get_object_or_404(Supplier, user=user)

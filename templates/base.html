@@ -2,35 +2,42 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <title>{{ page.title_view }}</title>
+  <title>{{ title_page }}</title>
 </head>
+
 <body>
 
+  <!--Cabeçalho Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="{% url 'core:index' %}"><strong>Catálogo de Fornecedores</strong></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <a class="navbar-brand" href="{% url 'core:index' %}"><strong>Catálogo de Fornecedores</strong></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+      aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">sobre</a>
-      </li>
-
-      {% if not user.is_anonymous %}
-
+    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">sobre</a>
+        </li>
+        
+        {% if not user.is_anonymous %} <!-- Verifica se o usuário estálogado para personalizar menu-->
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             menu
           </a>
+
+          <!--Menu para fornecedor-->
           {% if type_user == 'supplier' %}
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'core:my_services' %}">meus serviços</a>
@@ -38,12 +45,14 @@
             <a class="dropdown-item" href="{% url 'core:service_register' %}">cadastrar novo serviço</a>
           </div>
 
+          <!--Menu para cliente-->
           {% elif type_user == 'client' %}
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">meus pedidos</a>
             <a class="dropdown-item" href="#">agenda</a>
           </div>
 
+          <!--Menu para super usuário-->
           {% elif user.is_superuser %}
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'admin:index' %}">admin</a>
@@ -53,42 +62,60 @@
         </li>
 
 
-      <li class="nav-item active">
-        <a class="nav-link " href="{% url 'core:user_update' %}">Usuário: <strong>{{ user }}</strong></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link " href="{% url 'core:logout' %}">logout</a>
-      </li>
-      {% else %}
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          cadastrar usuário
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{% url 'core:client_register' %}">Cliente</a>
-          <a class="dropdown-item" href="{% url 'core:supplier_register' %}">Fornecedor</a>
-        </div>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link " href="#">Usuário: <strong>Nenhum usuário logado</strong></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'core:login' %}" >Login <span class="sr-only">(página atual)</span></a>
-      </li>
-      {% endif %}
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
-    </form>
+        <li class="nav-item active">
+          <a class="nav-link " href="{% url 'core:user_update' %}">Usuário: <strong>{{ user }}</strong></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link " href="{% url 'core:logout' %}">logout</a>
+        </li>
+        {% else %}
+
+        <!--Menu para usuário não logado-->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            cadastrar usuário
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'core:client_register' %}">Cliente</a>
+            <a class="dropdown-item" href="{% url 'core:supplier_register' %}">Fornecedor</a>
+          </div>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link " href="#">Usuário: <strong>Nenhum usuário logado</strong></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'core:login' %}">Login <span class="sr-only">(página atual)</span></a>
+        </li>
+        {% endif %}
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
+      </form>
+    </div>
+  </nav>
+
+  <!--Título da página renderizada-->
+  <div class="header-title">
+    <h1>{{ title_page }}</h1>
   </div>
-</nav>
 
-{% block content %}
-{% endblock %}
+  <!--Bloco de conteúdo principal-->
+  {% block content %}
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  {% endblock %}
+
+  <!--Bloco de scripts-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

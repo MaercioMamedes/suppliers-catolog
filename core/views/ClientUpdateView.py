@@ -12,13 +12,15 @@ class ClientUpdateView(FormView):
     form_class = ClientUpdateForm
 
     def get_context_data(self, **kwargs):
-        logged_user = get_type_user(self.request.user)
+        """Método para renderizar página a partir de uma requisição GET"""
+        logged_user = get_type_user(self.request.user)  # retorna qual tipo de usuário está logado
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'Atualização de Cliente'
-        context['type_user'] = logged_user[0]
+        context['type_user'] = logged_user
         return context
 
     def get_initial(self):
+        """Método para carregar o formulário de atualização com os dados do usuário logado"""
         user = get_object_or_404(User, pk=self.request.user.id)
         user_client = get_object_or_404(Client, user=user)
 
@@ -36,6 +38,7 @@ class ClientUpdateView(FormView):
         }
 
     def post(self, request, *args, **kwargs):
+        """Método para salvar os dados de atualização do usuário cliente a partir de uma requisição POST"""
         form = ClientUpdateForm(request.POST)
         user = get_object_or_404(User, pk=kwargs['pk'])
         user_client = get_object_or_404(Client, user=user)

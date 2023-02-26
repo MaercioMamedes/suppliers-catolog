@@ -13,3 +13,6 @@ class Service(models.Model):
     published = models.BooleanField('Publicado', default=False)
     created_in = models.DateTimeField('Criado em:  ', auto_now_add=True)
     modified_in = models.DateTimeField('modificado em: ', auto_now=True)
+
+    def __str__(self):
+        return self.title

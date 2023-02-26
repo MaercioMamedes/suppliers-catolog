@@ -10,13 +10,15 @@ class LoginView(FormView):
     form_class = LoginForm
 
     def get_context_data(self, **kwargs):
+        """Método para renderizar página a partir de uma requisição GET"""
         logged_user = get_type_user(self.request.user)
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'login'
-        context['type_user'] = logged_user[0]
+        context['type_user'] = logged_user
         return context
 
     def post(self, request, *args, **kwargs):
+        """Método para efetuar a autenticação de usuário"""
         username = request.POST['username']
         password = request.POST['password']
 

@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 
 class UserUpdateRedirectView(View):
+    """View para redirecionar para rota de atualização de usuário cliente ou usuário fornecedor"""
 
     def get(self, *args, **kwargs):
         user = get_object_or_404(User, pk=self.request.user.id)

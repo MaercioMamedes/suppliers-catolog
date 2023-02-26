@@ -9,13 +9,15 @@ class SupplierRegisterView(FormView):
     form_class = SupplierRegisterForm
 
     def get_context_data(self, **kwargs):
+        """Método para renderizar página a partir de uma requisição GET"""
         logged_user = get_type_user(self.request.user)
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'Cadastro de Fornecedor'
-        context['type_user'] = logged_user[0]
+        context['type_user'] = logged_user
         return context
 
     def post(self, request, *args, **kwargs):
+        """Método para gravar dados de fornecedores cadastrados a partir de uma requisição POST"""
         form = SupplierRegisterForm(request.POST)
         supplier_factor(
             fantasy_name=form.data.get('fantasy_name'),
