@@ -10,7 +10,8 @@
             <figure>
 
                 <img class="my-services" src="{{ service.image.url }}" alt="" srcset="">
-                <figcaption>{{ service.title }}</figcaption>
+                <figcaption>{{ service.title }} - {{ service.supplier.fantasy_name }}</figcaption>
+                <p>R$ {{ service.price }}</p>
 
                 <a href="{% url 'core:service_update' service.id %}"><button class="btn btn-primary">Editar</button></a>
             </figure>

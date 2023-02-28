@@ -25,6 +25,7 @@ class ServiceRegisterView(FormView):
             user = self.request.user
             user_supplier = Supplier.objects.get(user=user)
             new_service.supplier = user_supplier
+            new_service.published = True
             new_service.save()
             return redirect('core:index')
 

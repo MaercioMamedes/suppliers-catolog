@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
+{% load static %}
 
 
 {% block content %}
 
 
 <div class="container col-8">
-    <form action="{% url 'core:service_register' %}" method="POST" enctype="multipart/form-data">
+    <figure>
+        {% if service.image %}
+        <img class="service" src="{{ service.image.url }}" alt="" srcset="">
+        {% else %}
+        <img class="service" src="{% static 'image/capa_padrao.jpg' %}" alt="" srcset="">
+        {% endif %}
+    </figure>
+    <form action="{% url 'core:service_update' service.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form.visible_fields %}
         <div class="form-group">

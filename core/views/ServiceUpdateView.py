@@ -1,6 +1,6 @@
 from django.views.generic import FormView
 from core.helpers import get_type_user
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from core.models import Service
 from core.forms import ServiceUpdateForm
 
@@ -15,6 +15,7 @@ class ServiceUpdateView(FormView):
         context = super().get_context_data(**kwargs)
         context['title_page'] = 'Atualização de Serviço'
         context['type_user'] = logged_user
+        context['service'] = get_object_or_404(Service, pk=self.kwargs['pk'])
         return context
 
     def get_initial(self):
@@ -28,3 +29,11 @@ class ServiceUpdateView(FormView):
             'price': service.price,
         }
 
+    def post(self, request, *args, **kwargs):
+        form = ServiceUpdateForm(self.request.POST, self.request.FILES)
+        service = get_object_or_404(Service, pk=self.kwargs['pk'])
+        if form.is_valid():
+            updated_service = form.save(commit=False)
+            updated_service.supplier = service.supplier
+            updated_service.save()
+            return redirect('core:my_services')
