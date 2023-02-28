@@ -1,6 +1,6 @@
 from django.urls import path
 from core.views import IndexView, LoginView, logout, ClientRegisterView, SupplierRegisterView, ClientUpdateView, \
-    SupplierUpdateView, UserUpdateRedirectView, ServiceRegisterView, MyServicesView
+    SupplierUpdateView, UserUpdateRedirectView, ServiceRegisterView, MyServicesView, ServiceUpdateView
 
 app_name = 'core'
 
@@ -14,5 +14,6 @@ urlpatterns = [
     path('atualizar-cliente/<int:pk>', ClientUpdateView.as_view(), name='client_update'),
     path('atualizar-fornecedor/<int:pk>', SupplierUpdateView.as_view(), name='supplier_update'),
     path('cadastrar-servico', ServiceRegisterView.as_view(), name='service_register'),
+    path('atualizar-servico/<int:pk>', ServiceUpdateView.as_view(), name='service_update'),
     path('meus-servicos', MyServicesView.as_view(),  name='my_services'),
 ]
